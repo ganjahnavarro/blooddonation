@@ -1,0 +1,6 @@
+/home/ganjah/workspace/xzvf.blood-donation/src/main/java/xzvf/model/Patient.java
+/home/ganjah/workspace/xzvf.blood-donation/src/main/java/xzvf/controller/PatientController.java
+/home/ganjah/workspace/xzvf.blood-donation/src/main/java/xzvf/controller/ApplicationController.java
+/home/ganjah/workspace/xzvf.blood-donation/src/main/java/xzvf/service/PatientService.java
+/home/ganjah/workspace/xzvf.blood-donation/src/main/java/xzvf/repository/PatientRepository.java
+/home/ganjah/workspace/xzvf.blood-donation/src/main/java/xzvf/enums/BloodType.java
