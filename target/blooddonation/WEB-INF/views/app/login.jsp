@@ -50,9 +50,13 @@
 				</div>
 				<div class="card">
 					<div class="card-content">
-						<div>
-							<button class="btn grey block waves-effect waves-light" type="submit" name="action">Register</button>
-						</div>
+						<a href="<c:url value="/donor/new" />">
+							<button class="btn grey block waves-effect waves-light" type="submit" name="action">I want to donate</button>
+						</a>
+					
+						<a href="<c:url value="/patient/new" />">
+							<button class="btn grey block waves-effect waves-light" type="submit" name="action">I need donation</button>
+						</a>
 					</div>
 				</div>
 			</div>
@@ -63,6 +67,13 @@
 	<script src="<c:url value="/resources/js/jquery.min.js" />"></script>
 	<script src="<c:url value="/resources/js/materialize.js" />"></script>
 	<script src="<c:url value="/resources/js/app.js" />"></script>
+
+	<script>
+		var message = "${infoMessage}" || "${errorMessage}";
+		if (message) {
+			Materialize.toast(message, 3500);	
+		}
+	</script>
 
 	</body>
 </html>

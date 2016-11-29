@@ -11,8 +11,8 @@
 		<table class="highlight responsive-table bordered">
 			<thead>
 				<tr>
+					<th data-field="bloodtype">Blood Type</th>
 					<th data-field="name">Name</th>
-					<th data-field="name">Blood Type</th>
 					<th data-field="address">Address</th>
 					<th data-field="contact">Contact No.</th>
 					<th data-field="email">Email</th>
@@ -24,9 +24,9 @@
 					<tr>
 						<td>${patient.bloodType}</td>
 						<td>${patient.displayString}</td>
-						<td>${patient.address}</td>
-						<td>${patient.contactNo}</td>
-						<td>${patient.email}</td>
+						<td>${patient.user.address}</td>
+						<td>${patient.user.contactNo}</td>
+						<td>${patient.user.email}</td>
 					</tr>
 				</c:forEach>
 			</tbody>

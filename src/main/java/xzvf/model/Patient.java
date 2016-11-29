@@ -2,16 +2,18 @@ package xzvf.model;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 
 import xzvf.enums.BloodType;
-import xzvf.enums.Gender;
 
 @Entity(name = Patient.ENTITY_NAME)
 public class Patient implements IRecord {
@@ -20,21 +22,17 @@ public class Patient implements IRecord {
 	private static final long serialVersionUID = -5715969777178309372L;
 	
 	private Integer id;
-	private Gender gender = Gender.MALE;
+	private User user;
 	private BloodType bloodType = BloodType.A;
-	
-	private String lastName;
-	private String firstName;
-	private String middleName;
-	
-	private String address;
-	private String contactNo;
-	private String email;
-	
-	private Boolean active = true;
 	
 	private String entryBy;
 	private Date entryDate;
+	
+	public Patient() {
+		User user = new User();
+		user.setActive(false);
+		this.user = user;
+	}
 	
 	@Id
 	@Override
@@ -48,39 +46,16 @@ public class Patient implements IRecord {
 		this.id = id;
 	}
 	
-	public String getLastName() {
-		return lastName;
+	@ManyToOne(targetEntity = User.class, cascade = CascadeType.ALL)
+	@JoinColumn(name = "userId")
+	public User getUser() {
+		return user;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getMiddleName() {
-		return middleName;
-	}
-
-	public void setMiddleName(String middleName) {
-		this.middleName = middleName;
-	}
-	
-	@Enumerated(EnumType.STRING)
-	public Gender getGender() {
-		return gender;
-	}
-
-	public void setGender(Gender gender) {
-		this.gender = gender;
-	}
-	
 	@Enumerated(EnumType.STRING)
 	public BloodType getBloodType() {
 		return bloodType;
@@ -88,38 +63,6 @@ public class Patient implements IRecord {
 
 	public void setBloodType(BloodType bloodType) {
 		this.bloodType = bloodType;
-	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-	public String getContactNo() {
-		return contactNo;
-	}
-
-	public void setContactNo(String contactNo) {
-		this.contactNo = contactNo;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public Boolean getActive() {
-		return active;
-	}
-
-	public void setActive(Boolean active) {
-		this.active = active;
 	}
 
 	@Override
@@ -145,9 +88,7 @@ public class Patient implements IRecord {
 	@Transient
 	@Override
 	public String getDisplayString() {
-		return (lastName != null ? lastName + ", " : "")
-				+ (firstName != null ? firstName + " " : "")
-				+ (middleName != null ? middleName : "");
+		return getUser() != null ? getUser().getDisplayString() : null;
 	}
 
 }

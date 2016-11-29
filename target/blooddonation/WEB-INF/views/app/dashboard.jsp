@@ -18,24 +18,57 @@
 				</div>
 			</a>
 		</div>
-	
+		
 		<div class="col s4 m4">
-			<a href="<c:url value="/patient/list" />">
+			<a href="<c:url value="/donor/new" />">
 				<div class="card hoverable">
 					<div class="card-content lighten-4 center">
-						<img src="<c:url value="/resources/images/conference.png" />" />
-						<p class="blue-text">Patient List</p>
+						<img src="<c:url value="/resources/images/male.png" />" />
+						<p class="blue-text">New Donor</p>
 					</div>
 				</div>
 			</a>
 		</div>
 		
 		<div class="col s4 m4">
-			<a href="<c:url value="/todo" />">
+			<a href="<c:url value="/donation/new" />">
+				<div class="card hoverable">
+					<div class="card-content lighten-4 center">
+						<img src="<c:url value="/resources/images/male.png" />" />
+						<p class="blue-text">New Donation Request</p>
+					</div>
+				</div>
+			</a>
+		</div>
+	
+		<div class="col s4 m4">
+			<a href="<c:url value="/patient/list" />">
+				<div class="card hoverable">
+					<div class="card-content lighten-4 center">
+						<img src="<c:url value="/resources/images/conference.png" />" />
+						<p class="blue-text">Patients</p>
+					</div>
+				</div>
+			</a>
+		</div>
+		
+		<div class="col s4 m4">
+			<a href="<c:url value="/donor/list" />">
+				<div class="card hoverable">
+					<div class="card-content lighten-4 center">
+						<img src="<c:url value="/resources/images/conference.png" />" />
+						<p class="blue-text">Donors</p>
+					</div>
+				</div>
+			</a>
+		</div>
+		
+		<div class="col s4 m4">
+			<a href="<c:url value="/donation/list" />">
 				<div class="card hoverable">
 					<div class="card-content lighten-4 center">
 						<img src="<c:url value="/resources/images/system.png" />" />
-						<p class="blue-text">Transactions</p>
+						<p class="blue-text">Donation Requests</p>
 					</div>
 				</div>
 			</a>

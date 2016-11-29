@@ -202,7 +202,7 @@
 		</div>
 		<div class="footer-copyright">
 			<div class="container">
-				Made by <a href="#">restie&friends</a>
+				Made by <a href="#">restie&amp;friends</a>
 			</div>
 		</div>
 	</footer>
@@ -211,5 +211,12 @@
 	<script src="<c:url value="/resources/js/jquery.min.js" />"></script>
 	<script src="<c:url value="/resources/js/materialize.js" />"></script>
 	<script src="<c:url value="/resources/js/app.js" />"></script>
+	
+	<script>
+		var message = "${infoMessage}" || "${errorMessage}";
+		if (message) {
+			Materialize.toast(message, 3500);	
+		}
+	</script>
 </body>
 </html>

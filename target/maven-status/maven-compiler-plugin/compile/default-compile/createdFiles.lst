@@ -1,6 +1,15 @@
-xzvf/controller/PatientController.class
+xzvf/service/DonationService.class
+xzvf/repository/DonorRepository.class
+xzvf/model/Donation.class
+xzvf/repository/DonationRepository.class
 xzvf/service/PatientService.class
 xzvf/repository/PatientRepository.class
-xzvf/enums/BloodType.class
+xzvf/controller/DonationController.class
 xzvf/controller/ApplicationController.class
+xzvf/enums/Status.class
 xzvf/model/Patient.class
+xzvf/controller/DonorController.class
+xzvf/service/DonorService.class
+xzvf/controller/PatientController.class
+xzvf/enums/BloodType.class
+xzvf/model/Donor.class

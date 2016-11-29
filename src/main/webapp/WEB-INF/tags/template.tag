@@ -17,16 +17,19 @@
 	<nav role="navigation">
 		<div class="nav-wrapper container">
 			<a id="logo-container" href="<c:url value="/dashboard" />" class="brand-logo">Blood Donation Online System</a>
-			<ul class="right hide-on-med-and-down">
-				<li><a href="<c:url value="/dashboard" />">Home</a></li>
-				<li><a href="<c:url value="/logout" />">Logout</a></li>
-			</ul>
-
-			<ul id="nav-mobile" class="side-nav">
-				<li><a href="<c:url value="/dashboard" />">Home</a></li>
-				<li><a href="<c:url value="/logout" />">Logout</a></li>
-			</ul>
-			<a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+			
+			<c:if test="${not empty userName}"> 
+				<ul class="right hide-on-med-and-down">
+					<li><a href="<c:url value="/dashboard" />">Home</a></li>
+					<li><a href="<c:url value="/logout" />">Logout</a></li>
+				</ul>
+	
+				<ul id="nav-mobile" class="side-nav">
+					<li><a href="<c:url value="/dashboard" />">Home</a></li>
+					<li><a href="<c:url value="/logout" />">Logout</a></li>
+				</ul>
+				<a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+			</c:if>
 		</div>
 	</nav>
 
@@ -51,5 +54,12 @@
 	<script src="<c:url value="/resources/js/jquery.min.js" />"></script>
 	<script src="<c:url value="/resources/js/materialize.js" />"></script>
 	<script src="<c:url value="/resources/js/app.js" />"></script>
+	
+	<script>
+		var message = "${infoMessage}" || "${errorMessage}";
+		if (message) {
+			Materialize.toast(message, 3500);	
+		}
+	</script>
 </body>
 </html>

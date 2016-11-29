@@ -15,19 +15,19 @@
 			<div class="row">
 				<div class="input-field col m4">
 					<i class="material-icons prefix">assignment_ind</i>
-					<form:input id="firstName" path="firstName" type="text" cssClass="validate" required="required" />
+					<form:input id="firstName" path="user.firstName" type="text" cssClass="validate" required="required" />
 					<label for="firstName">First Name</label>
 				</div>
 				
 				<div class="input-field col m4">
 					<i class="material-icons prefix">label_outline</i>
-					<form:input id="middleName" path="middleName" type="text" class="validate" />
+					<form:input id="middleName" path="user.middleName" type="text" cssClass="validate" />
 					<label for="middleName">Middle Name</label>
 				</div>
 				
 				<div class="input-field col m4">
 					<i class="material-icons prefix">label_outline</i>
-					<form:input id="lastName" path="lastName" type="text" class="validate" />
+					<form:input id="lastName" path="user.lastName" type="text" cssClass="validate" />
 					<label for="lastname">Last Name</label>
 				</div>
 			</div>
@@ -35,59 +35,65 @@
 			<div class="row">
 				<div class="input-field col m4">
 					<i class="material-icons prefix">label_outline</i>
-					<form:select path="gender" id="gender" items="${genders}"
+					<form:select id="gender" path="user.gender" items="${genders}"
 						itemLabel="displayString" />
 					<label for="gender">Gender</label>
 				</div>
 				
 				<div class="input-field col m4">
 					<i class="material-icons prefix">label_outline</i>
-					<form:select path="bloodType" id="bloodType" items="${bloodTypes}" />
+					<form:select id="bloodType" path="bloodType" items="${bloodTypes}" />
 					<label for="bloodType">Blood Type</label>
+				</div>
+				
+				<div class="input-field col m4">
+					<i class="material-icons prefix">email</i>
+					<form:input id="email" path="user.email" type="text" cssClass="validate" required="required" />
+					<label for="email" data-error="Invalid email.">Email</label>
 				</div>
 			</div>
 			
 			<div class="row">
 				<div class="input-field col m8">
 					<i class="material-icons prefix">language</i>
-					<form:input id="address" path="address" type="text" class="validate" />
+					<form:input id="address" path="user.address" type="text" cssClass="validate" required="required" />
 					<label for="address">Address</label>
 				</div>
 				
 				<div class="input-field col m4">
 					<i class="material-icons prefix">perm_phone_msg</i>
-					<form:input id="contactNo" path="contactNo" type="text" class="validate" />
+					<form:input id="contactNo" path="user.contactNo" type="text" cssClass="validate" required="required" />
 					<label for="contactNo">Contact No.</label>
 				</div>
 			</div>
 			
 			<div class="row">
 				<div class="input-field col m4">
-					<i class="material-icons prefix">email</i>
-					<form:input id="email" path="email" type="email" class="validate" required="required" />
-					<label for="email" data-error="Invalid email.">Email</label>
+					<i class="material-icons prefix">assignment_ind</i>
+					<form:input id="userName" path="user.userName" type="text" cssClass="validate" required="required" />
+					<label for="userName">Username</label>
 				</div>
 				
 				<div class="input-field col m4">
 					<i class="material-icons prefix">lock_open</i>
-					<input id="password" name="firstname" type="password" class="validate" required="required">
+					<form:input id="password" path="user.password" type="password" cssClass="validate" required="required" />
 					<label for="password">Password</label>
 				</div>
 				
 				<div class="input-field col m4">
 					<i class="material-icons prefix">lock_outline</i>
-					<input id="passwordconfirmation" name="firstname" type="password" class="validate" required="required">
-					<label for="passwordconfirmation">Re-Enter Password</label>
+					<input id="passwordConfirmation" name="passwordConfirmation" type="password" class="validate" required="required">
+					<label for="passwordConfirmation">Re-Enter Password</label>
 				</div>
 			</div>
 
 			<p class="eligibility-checkbox">
-				<input type="checkbox" id="healthy" class="validate" required="required" />
+				<input id="healthy" type="checkbox" class="validate" required="required" />
 				<label for="healthy">I have good general health and feeling well</label>
 			</p>
 			
 			<p class="eligibility-checkbox">
-				<input type="checkbox" id="non-malnourish" class="validate" required="required"/>
+				<input id="non-malnourish" type="checkbox" class="validate" required="required"/>
 				<label for="non-malnourish">My weight is above 110 lbs</label>
 			</p>
 

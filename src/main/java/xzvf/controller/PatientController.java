@@ -17,12 +17,12 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import xzvf.Utility;
 import xzvf.enums.BloodType;
 import xzvf.enums.Gender;
 import xzvf.model.Patient;
-import xzvf.model.User;
 import xzvf.service.MailService;
 import xzvf.service.PatientService;
 import xzvf.service.UserService;
@@ -57,24 +57,40 @@ public class PatientController {
 	
 	@RequestMapping(value = { "/new" }, method = RequestMethod.POST)
 	public String save(@Valid Patient patient, BindingResult result,
-			ModelMap model, HttpServletRequest request) throws Exception {
+			ModelMap model, HttpServletRequest request, RedirectAttributes redirectAttributes) throws Exception {
 		if (result.hasErrors()) {
 			Utility.parseErrors(result, model);
 			model.addAttribute("genders", Gender.values());
 			model.addAttribute("bloodTypes", BloodType.values());
 			return "patient/dataentry";
 		}
-
+		
+		if (!request.getParameter("passwordConfirmation").equals(patient.getUser().getPassword())) {
+//			TODO duplicate code
+			Utility.parseErrors(result, model);
+			model.addAttribute("genders", Gender.values());
+			model.addAttribute("bloodTypes", BloodType.values());
+			return "patient/dataentry";
+		}
+		
 		String token = String.valueOf(UUID.randomUUID());
 		String message = "Please click on the following link to activate your account: "
 				+ Utility.getURLWithContextPath(request) + "/patient/confirm/" + token;
 		
-		patientService.save(patient);
-		userService.save(createUserFromPatient(patient, token));
-		mailService.sendMail(patient.getEmail(), "Account activation", message);
+		String entryBy = Utility.getSecurityPrincipal() != null ?
+				Utility.getSecurityPrincipal() : patient.getUser().getUserName();
+				
+		patient.setEntryBy(entryBy);
+		patient.getUser().setConfirmationToken(token);
+		patient.getUser().setEntryBy(entryBy);
+		patient.getUser().setEntryDate(new Date());
 		
-		model.addAttribute("infoMessage", "Patient " + patient.getDisplayString() + " registered successfully");
-		return "redirect:/patient/list";
+		patientService.save(patient);
+		mailService.sendMail(patient.getUser().getEmail(), "Account activation", message);
+		
+		redirectAttributes.addFlashAttribute("infoMessage", "Registration successful");
+		String redirectPath = Utility.isLoggedIn() ? "/patient/list" : "/login"; 
+		return "redirect:" + redirectPath;
 	}
 	
 	@RequestMapping(value = { "/edit-{id}-patient" }, method = RequestMethod.GET)
@@ -111,23 +127,6 @@ public class PatientController {
         return "app/message";
     }
     
-	private User createUserFromPatient(Patient patient, String token) {
-		User user = new User();
-		user.setFirstName(patient.getFirstName());
-		user.setLastName(patient.getLastName());
-		user.setMiddleName(patient.getMiddleName());
-		user.setActive(false);
-		user.setContactNo(patient.getContactNo());
-		user.setEmail(patient.getEmail());
-		user.setEntryBy(Utility.getSecurityPrincipal());
-		user.setEntryDate(new Date());
-		user.setGender(patient.getGender());
-		user.setUserName(patient.getEmail());
-		user.setPassword("123456");
-		user.setConfirmationToken(token);
-		return user;
-	}
- 
     @InitBinder
 	public void initBinder(WebDataBinder binder) {
 	    binder.registerCustomEditor(String.class, new StringTrimmerEditor(true));
