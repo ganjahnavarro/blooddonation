@@ -5,6 +5,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import xzvf.model.Patient;
 import xzvf.repository.AbstractRepository;
 import xzvf.repository.PatientRepository;
 
@@ -18,6 +19,10 @@ public class PatientService extends AbstractService {
 	@Override
 	public AbstractRepository getRepository() {
 		return repository;
+	}
+	
+	public Patient findByUsername(String userName) {
+		return repository.findByUsername(userName);
 	}
 	
 }

@@ -6,41 +6,56 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags"%>
 
 <t:template>
-	<h5 class="page-header">Donation Request</h5>
-	
 	<div class="row">
-		<form:form method="POST" modelAttribute="donation" class="col s12">
-			<form:input type="hidden" path="id" id="id" />
-		
-			<div class="row">
-				<div class="input-field col m4 offset-m2">
-					<i class="material-icons prefix">assignment_ind</i>
-					<form:input id="title" path="title" type="text" cssClass="validate" required="required" />
-					<label for="title">Title</label>
+		<div class="col s8 offset-s2">
+			<h5 class="page-header">Donation Request</h5>
+			
+			<form:form method="POST" modelAttribute="donation"
+				action="${pageContext.request.contextPath}${actionParam}${_csrf.parameterName}=${_csrf.token}"
+				enctype="multipart/form-data">
+			
+				<form:input id="donationId" type="hidden" path="id" />
+			
+				<div class="row">
+					<div class="input-field col m6">
+						<i class="material-icons prefix">assignment_ind</i>
+						<form:input id="title" path="title" type="text" cssClass="validate" required="required" />
+						<label for="title">Title</label>
+					</div>
+					
+					<div class="input-field col m6">
+						<i class="material-icons prefix">label_outline</i>
+						<fmt:formatDate var="formattedExpiryDate" pattern="dd MMMM, yyyy" value="${donation.expiryDate}" />
+						<form:input id="expiryDate" path="expiryDate" type="date" cssClass="validate datepicker" required="required" value="${formattedExpiryDate}" />
+						<label for="expiryDate">Expiry Date</label>
+					</div>
 				</div>
 				
-				<div class="input-field col m4 offset-m2">
-					<i class="material-icons prefix">label_outline</i>
-					<form:input id="expiryDate" path="expiryDate" type="date" cssClass="validate datepicker" />
-					<label for="expiryDate">Expiry Date</label>
+				<div class="row">
+					<div class="input-field col m12">
+						<i class="material-icons prefix">label_outline</i>
+						<form:textarea id="description" path="description" type="text" cssClass="validate materialize-textarea" />
+						<label for="description">Description</label>
+					</div>
 				</div>
-			</div>
-			
-			<div class="row">
-				<div class="input-field col m8 offset-m2">
-					<i class="material-icons prefix">label_outline</i>
-					<form:textarea id="description" path="description" type="text" cssClass="validate" />
-					<label for="description">Description</label>
-				</div>
-			</div>
-			
-			<div class="form-actions">
-				<button class="btn waves-effect waves-light" type="submit" name="action">Submit
-					<i class="material-icons right">send</i>
-				</button>
 
-				<a class="waves-effect btn-flat" onclick="window.history.back();">Cancel</a>
-			</div>
-		</form:form>
+				<div class="row">
+					<div class="input-field col m6">
+						<i class="material-icons prefix">note_add</i>
+						<input id="image" type="file" name="fileUpload" size="50" value="${donation.imageFileName}" />
+					</div>
+				</div>
+
+				<div class="form-actions row">
+					<div class="col m12">
+						<button class="btn waves-effect waves-light" type="submit" name="action">Submit
+							<i class="material-icons right">send</i>
+						</button>
+		
+						<a class="waves-effect btn-flat" onclick="window.history.back();">Cancel</a>
+					</div>
+				</div>
+			</form:form>
+		</div>
 	</div>
 </t:template>

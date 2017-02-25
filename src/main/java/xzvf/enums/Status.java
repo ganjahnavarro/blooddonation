@@ -2,6 +2,6 @@ package xzvf.enums;
 
 public enum Status {
 
-	PENDING, APPROVED, PROCESSED, CANCELLED
+	PENDING, APPROVED, DISAPPROVED, PROCESSED, CANCELLED
 	
 }

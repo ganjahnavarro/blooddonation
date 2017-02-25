@@ -8,25 +8,7 @@
 	<h5 class="page-header">Donation Requests</h5>
 	
 	<div class="row">
-		<table class="highlight responsive-table bordered">
-			<thead>
-				<tr>
-					<th data-field="expiryDate">Expiry Date</th>
-					<th data-field="title">Title</th>
-					<th data-field="description">Description</th>
-				</tr>
-			</thead>
-	
-			<tbody>
-				<c:forEach items="${donations}" var="donation">
-					<tr>
-						<td>${donation.expiryDate}</td>
-						<td>${donation.title}</td>
-						<td>${donation.description}</td>
-						<td>${donation.status}</td>
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
+		<jsp:include page="admin.jsp" />
+		<jsp:include page="user.jsp" />
 	</div>
 </t:template>

@@ -3,10 +3,13 @@ package xzvf.model;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 
@@ -24,6 +27,9 @@ public class Donation implements IRecord {
 	
 	private Patient patient;
 	private Donor donor;
+	
+	private byte[] image;
+	private String imageFileName;
 	
 	private Status status = Status.PENDING;
 	private Date expiryDate;
@@ -87,6 +93,7 @@ public class Donation implements IRecord {
 		this.expiryDate = expiryDate;
 	}
 
+	@Enumerated(EnumType.STRING)
 	public Status getStatus() {
 		return status;
 	}
@@ -114,11 +121,62 @@ public class Donation implements IRecord {
 	public void setEntryDate(Date entryDate) {
 		this.entryDate = entryDate;
 	}
+	
+	@Lob
+	public byte[] getImage() {
+		return image;
+	}
+
+	public void setImage(byte[] image) {
+		this.image = image;
+	}
+
+	public String getImageFileName() {
+		return imageFileName;
+	}
+
+	public void setImageFileName(String imageFileName) {
+		this.imageFileName = imageFileName;
+	}
 
 	@Transient
 	@Override
 	public String getDisplayString() {
 		return getTitle();
+	}
+	
+	@Transient
+	public String getDonorDisplayString() {
+		return getDonor() != null ? getDonor().getDisplayString() : "";
+	}
+	
+	@Transient
+	public String getPatientDisplayString() {
+		return getPatient() != null ? getPatient().getDisplayString() : "";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((description == null) ? 0 : description.hashCode());
+		result = prime * result + ((donor == null) ? 0 : donor.hashCode());
+		result = prime * result + ((entryBy == null) ? 0 : entryBy.hashCode());
+		result = prime * result + ((entryDate == null) ? 0 : entryDate.hashCode());
+		result = prime * result + ((expiryDate == null) ? 0 : expiryDate.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((patient == null) ? 0 : patient.hashCode());
+		result = prime * result + ((status == null) ? 0 : status.hashCode());
+		result = prime * result + ((title == null) ? 0 : title.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Donation) {
+			return this.getId().equals(((Donation) obj).getId());
+		}
+		return super.equals(obj);
 	}
 
 }

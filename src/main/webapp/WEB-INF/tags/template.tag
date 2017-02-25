@@ -34,24 +34,25 @@
 	</nav>
 
 	<div class="container">
-		<!-- Message -->
-		<c:choose>
-			<c:when test="${not empty infoMessage}">
-				<c:out value="${infoMessage}"></c:out>
-			</c:when>
-			
-			<c:when test="${not empty errorMessage}">
-				<c:out value="${errorMessage}"></c:out>
-			</c:when>
-		</c:choose>
-	
 		<jsp:doBody />
-		
+
+		<!-- Modal Structure -->
+		<div id="confirmation-modal" class="modal">
+			<div class="modal-content">
+				<p id="confirmation-modal-message">Are you sure you want to continue with this action?</p>
+				<a id="confirmation-modal-action">
+					<button type="button" class="btn waves-effect waves-light grey">Continue</button>
+				</a>
+				<a class="waves-effect btn-flat" onclick="closeConfirmation();">Cancel</a>
+			</div>
+		</div>
+
 		<br/> <br/>
 	</div>
 
 	<!-- Scripts -->
 	<script src="<c:url value="/resources/js/jquery.min.js" />"></script>
+	<script src="<c:url value="/resources/js/jquery.tablesorter.js" />"></script>
 	<script src="<c:url value="/resources/js/materialize.js" />"></script>
 	<script src="<c:url value="/resources/js/app.js" />"></script>
 	

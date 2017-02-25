@@ -14,7 +14,7 @@
 	<link rel="stylesheet" href="<c:url value="/resources/css/app.css" />" media="screen,projection"/>
 	
 	<style>
-		html {background-image: url("resources/images/pattern.png")}
+		html {background-image: url("<c:url value="/resources/images/pattern.png" />")}
 	</style>
 </head>
 <body>
@@ -22,7 +22,7 @@
 		<div class="row">
 			<div class="col s12 offset-m4 m4">
 				<div class="page-header center">
-					<img src="resources/images/volunteering.png" />
+					<img src="<c:url value="/resources/images/volunteering.png" />" />
 					<h5 class="">Blood Donation Online System</h5>
 				</div>
 				<div class="card">
@@ -38,33 +38,36 @@
 							</div>
 						</div>
 						
-						<c:if test="${not empty error}">
-							<blockquote>Invalid email and/or password.</blockquote>
-						</c:if>
-
 						<div>
 							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> 
 							<button class="btn block waves-effect waves-light" type="submit" name="action">Login</button>
 						</div>
 					</form>
 				</div>
+				
 				<div class="card">
 					<div class="card-content">
 						<a href="<c:url value="/donor/new" />">
 							<button class="btn grey block waves-effect waves-light" type="submit" name="action">I want to donate</button>
 						</a>
-					
+					</div>
+				</div>
+				
+				<div class="card">
+					<div class="card-content">
 						<a href="<c:url value="/patient/new" />">
 							<button class="btn grey block waves-effect waves-light" type="submit" name="action">I need donation</button>
 						</a>
 					</div>
 				</div>
+				
 			</div>
 		</div>
 	</div>
 
 	<!-- Scripts -->
 	<script src="<c:url value="/resources/js/jquery.min.js" />"></script>
+	<script src="<c:url value="/resources/js/jquery.tablesorter.js" />"></script>
 	<script src="<c:url value="/resources/js/materialize.js" />"></script>
 	<script src="<c:url value="/resources/js/app.js" />"></script>
 
