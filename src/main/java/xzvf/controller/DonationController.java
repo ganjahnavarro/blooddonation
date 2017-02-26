@@ -1,12 +1,17 @@
 package xzvf.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
+import org.apache.commons.io.FileUtils;
+import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
@@ -38,6 +43,8 @@ public class DonationController {
 	@Autowired DonationService donationService;
 	@Autowired DonorService donorService;
 	@Autowired PatientService patientService;
+	
+	private static final Logger LOGGER = Logger.getLogger(DonationController.class);
 	
 	@RequestMapping(value = { "/", "/list" }, method = RequestMethod.GET)
 	public String list(ModelMap model) {
@@ -114,10 +121,12 @@ public class DonationController {
 	public String update(@Valid Donation donation, BindingResult result,
     		ModelMap model, HttpServletRequest request, RedirectAttributes redirectAttributes,
     		@PathVariable Integer id, @RequestParam CommonsMultipartFile fileUpload) {
+		boolean imageUpdated = false;
     	if (fileUpload != null && fileUpload.getOriginalFilename() != null
     			&& !fileUpload.getOriginalFilename().isEmpty()) {
 			donation.setImageFileName(fileUpload.getOriginalFilename());
 			donation.setImage(fileUpload.getBytes());
+			imageUpdated = true;
 		}
 		
 		if (result.hasErrors()) {
@@ -133,6 +142,11 @@ public class DonationController {
 		donation.setDonor(donation.getDonor() != null ? donation.getDonor() : previousRecord.getDonor());
 		donation.setEntryBy(previousRecord.getEntryBy());
 		donation.setEntryDate(previousRecord.getEntryDate());
+		
+		if (!imageUpdated) {
+			donation.setImage(previousRecord.getImage());
+			donation.setImageFileName(previousRecord.getImageFileName());
+		}
 		
         donationService.update(donation);
 		redirectAttributes.addFlashAttribute("infoMessage", "Update successful");
@@ -172,6 +186,33 @@ public class DonationController {
 			}
 		}
 		return assistedDonations;
+	}
+	
+	@RequestMapping(value = "/attachment/{id}/download", method = RequestMethod.GET)
+    public void downloadAttachment(@PathVariable Integer id, HttpServletResponse response) {
+		Donation donation = (Donation) donationService.findById(id);
+
+		byte[] image = donation.getImage();
+		String fileName = donation.getImageFileName();
+		
+		try {
+			File file = new File(System.getProperty("java.io.tmpdir") + fileName);
+			FileUtils.writeByteArrayToFile(file, donation.getImage());
+	        response.setContentType("application/octet-stream");
+	        response.setHeader("Content-Disposition", "attachment; filename=\"" + file.getName() + "\"");
+	        response.setContentLength(image.length);
+	        response.getOutputStream().write(image);
+		} catch (IOException e) {
+			LOGGER.error("Error downloading attachment: " + e.getMessage(), e);
+		}
+	}
+	
+	@RequestMapping(value = "/attachment/{id}/remove", method = RequestMethod.GET)
+    public void removeAttachment(@PathVariable Integer id, HttpServletResponse response) {
+		Donation donation = (Donation) donationService.findById(id);
+		donation.setImage(null);
+		donation.setImageFileName(null);
+		donationService.update(donation);
 	}
 	
 	@InitBinder

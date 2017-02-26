@@ -56,7 +56,13 @@
 						
 						<td><fmt:formatDate pattern="MM/dd/yyyy" value="${donation.expiryDate}" /></td>
 						<td>${donation.title}</td>
-						<td>${donation.description} ${donation.imageFileName}</td>
+						<td>${donation.description}
+							<c:if test="${not empty donation.imageFileName}"> 
+								<a href="<c:url value="/donation/attachment/${donation.id}/download" />">
+									<span class="donations-badge badge">attachment</span>
+								</a>
+							</c:if>
+						</td>
 						<td>${donation.donor.displayString}</td>
 						<td>${donation.patient.displayString}</td>
 						<td>${donation.status}</td>
@@ -100,7 +106,7 @@
 						
 						<td><fmt:formatDate pattern="MM/dd/yyyy" value="${donation.expiryDate}" /></td>
 						<td>${donation.title}</td>
-						<td>${donation.description} ${donation.imageFileName}</td>
+						<td>${donation.description}</td>
 						
 						<c:choose>
 							<c:when test="${isPatient}">
@@ -144,7 +150,13 @@
 					<tr>
 						<td><fmt:formatDate pattern="MM/dd/yyyy" value="${donation.expiryDate}" /></td>
 						<td>${donation.title}</td>
-						<td>${donation.description} ${donation.imageFileName}</td>
+						<td>${donation.description}
+							<c:if test="${not empty donation.imageFileName}"> 
+								<a href="<c:url value="/donation/attachment/${donation.id}/download" />">
+									<span class="donations-badge badge">attachment</span>
+								</a>
+							</c:if>
+						</td>
 						
 						<c:choose>
 							<c:when test="${isPatient}">

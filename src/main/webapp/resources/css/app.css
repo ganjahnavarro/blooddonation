@@ -105,3 +105,21 @@ input[type=text]:disabled {
 	float: left;
 	margin-top: 12.5px;
 }
+
+.remove-attachment {
+	float: left;
+}
+
+span.donations-badge {
+	font-weight: 300;
+    font-size: 0.8rem;
+    color: #fff;
+    background-color: #2196F3;
+    border-radius: 2px;	
+    position: inherit;
+    margin-left: 5px;
+}
+
+span.badge.donations-badge.new:after {
+    content: "";
+}

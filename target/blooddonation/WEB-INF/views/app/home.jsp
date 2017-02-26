@@ -93,7 +93,7 @@
 		<div class="container-sml footer-nav text-center">
 			<div class="col-12">
 				<div>
-					<span> 	&copy; 2016 Restie &amp; Friends. </span>
+					<span> 	&copy; 2017 Restie, Reynaldo, Francis & Bruce </span>
 				</div>
 			</div>
 		</div>

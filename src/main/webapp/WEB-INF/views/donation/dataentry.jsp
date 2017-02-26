@@ -42,7 +42,7 @@
 				<div class="row">
 					<div class="input-field col m6">
 						<i class="material-icons prefix">note_add</i>
-						<input id="image" type="file" name="fileUpload" size="50" value="${donation.imageFileName}" />
+						<input id="image" type="file" accept="image/*" name="fileUpload" size="50" value="${donation.imageFileName}" />
 					</div>
 				</div>
 
