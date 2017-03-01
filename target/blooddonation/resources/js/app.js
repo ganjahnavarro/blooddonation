@@ -6,8 +6,7 @@
 		
 		$('select').material_select();
 		
-		$('.datepicker').pickadate({
-		    format: 'MM/dd/yyyy' });
+		$('.datepicker').pickadate();
 		
 		$("table").tablesorter();
 		

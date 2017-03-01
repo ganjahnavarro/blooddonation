@@ -1,6 +1,5 @@
 package xzvf.controller;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -10,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
-import org.apache.commons.io.FileUtils;
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
@@ -196,10 +194,8 @@ public class DonationController {
 		String fileName = donation.getImageFileName();
 		
 		try {
-			File file = new File(System.getProperty("java.io.tmpdir") + fileName);
-			FileUtils.writeByteArrayToFile(file, donation.getImage());
 	        response.setContentType("application/octet-stream");
-	        response.setHeader("Content-Disposition", "attachment; filename=\"" + file.getName() + "\"");
+	        response.setHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\"");
 	        response.setContentLength(image.length);
 	        response.getOutputStream().write(image);
 		} catch (IOException e) {
