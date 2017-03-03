@@ -27,9 +27,11 @@
 			<thead>
 				<tr>
 					<th width="140"></th>
+					<th data-field="bloodType">Blood Type</th>
 					<th data-field="expiryDate">Expiry Date</th>
 					<th data-field="title">Title</th>
 					<th data-field="description">Description</th>
+					<th data-field="attachment">Attachment</th>
 					<th data-field="donor">Donor</th>
 					<th data-field="patient">Patient</th>
 					<th data-field="status">Status</th>
@@ -54,13 +56,25 @@
 							</c:if>
 						</td>
 						
+						<td>
+							<c:choose>
+								<c:when test="${donation.patient != null}">
+									${donation.patient.bloodType}
+								</c:when>
+								
+								<c:otherwise>
+									${donation.donor.bloodType}
+								</c:otherwise>
+							</c:choose>
+						</td>
+						
 						<td><fmt:formatDate pattern="MM/dd/yyyy" value="${donation.expiryDate}" /></td>
 						<td>${donation.title}</td>
-						<td>${donation.description}
-							<c:if test="${not empty donation.imageFileName}"> 
-								<a href="<c:url value="/donation/attachment/${donation.id}/download" />">
-									<span class="donations-badge badge">attachment</span>
-								</a>
+						<td>${donation.description}</td>
+						<td>
+							<c:if test="${not empty donation.imageFileName}">
+								<img class="materialboxed" width="80" height="80"
+									src="<c:url value='/donation/image?id=${donation.id}'/>"/>
 							</c:if>
 						</td>
 						<td>${donation.donor.displayString}</td>
@@ -77,9 +91,11 @@
 			<thead>
 				<tr>
 					<th width="80"></th>
+					<th data-field="bloodType">Blood Type</th>
 					<th data-field="expiryDate">Expiry Date</th>
 					<th data-field="title">Title</th>
 					<th data-field="description">Description</th>
+					<th data-field="attachment">Attachment</th>
 					
 					<c:choose>
 						<c:when test="${isPatient}">
@@ -104,9 +120,27 @@
 							</button>
 						</td>
 						
+						<td>
+							<c:choose>
+								<c:when test="${donation.patient != null}">
+									${donation.patient.bloodType}
+								</c:when>
+								
+								<c:otherwise>
+									${donation.donor.bloodType}
+								</c:otherwise>
+							</c:choose>
+						</td>
+						
 						<td><fmt:formatDate pattern="MM/dd/yyyy" value="${donation.expiryDate}" /></td>
 						<td>${donation.title}</td>
 						<td>${donation.description}</td>
+						<td>
+							<c:if test="${not empty donation.imageFileName}">
+								<img class="materialboxed" width="80" height="80"
+									src="<c:url value='/donation/image?id=${donation.id}'/>"/>
+							</c:if>
+						</td>
 						
 						<c:choose>
 							<c:when test="${isPatient}">
@@ -128,9 +162,11 @@
 		<table class="highlight responsive-table bordered">
 			<thead>
 				<tr>
+					<th data-field="bloodType">Blood Type</th>
 					<th data-field="expiryDate">Expiry Date</th>
 					<th data-field="title">Title</th>
 					<th data-field="description">Description</th>
+					<th data-field="attachment">Attachment</th>
 	
 					<c:choose>
 						<c:when test="${isPatient}">
@@ -148,13 +184,25 @@
 			<tbody>
 				<c:forEach items="${processedDonations}" var="donation">
 					<tr>
+						<td>
+							<c:choose>
+								<c:when test="${donation.patient != null}">
+									${donation.patient.bloodType}
+								</c:when>
+								
+								<c:otherwise>
+									${donation.donor.bloodType}
+								</c:otherwise>
+							</c:choose>
+						</td>
+					
 						<td><fmt:formatDate pattern="MM/dd/yyyy" value="${donation.expiryDate}" /></td>
 						<td>${donation.title}</td>
-						<td>${donation.description}
-							<c:if test="${not empty donation.imageFileName}"> 
-								<a href="<c:url value="/donation/attachment/${donation.id}/download" />">
-									<span class="donations-badge badge">attachment</span>
-								</a>
+						<td>${donation.description}</td>
+						<td>
+							<c:if test="${not empty donation.imageFileName}">
+								<img class="materialboxed" width="80" height="80"
+									src="<c:url value='/donation/image?id=${donation.id}'/>"/>
 							</c:if>
 						</td>
 						

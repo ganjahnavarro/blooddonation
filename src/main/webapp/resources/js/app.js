@@ -18,6 +18,18 @@
 				console.log(modal, trigger);
 			}
 		});
+		
+		try {
+			document.querySelector("input[type='number']").addEventListener("keypress",
+				function(evt) {
+					if (evt.which < 48 || evt.which > 57) {
+						evt.preventDefault();
+					}
+				}
+			);
+		} catch (error) {
+			console.log("No input type number found.");
+		}
 	});
 })(jQuery);
 
@@ -34,3 +46,4 @@ function openConfirmation(message, action) {
 function closeConfirmation() {
 	$('#confirmation-modal').modal('close');
 }
+

@@ -3,7 +3,8 @@
 }
 
 .btn {
-	margin-left: 0.5rem;
+	margin-left: 0.25rem;
+	margin-bottom: 0.25rem
 }
 
 .btn.block {
@@ -122,4 +123,33 @@ span.donations-badge {
 
 span.badge.donations-badge.new:after {
     content: "";
+}
+
+td {
+    font-size: 92.5%;
+}
+
+img.lightboxed {
+    max-width: 75px;
+    max-height: 75px;
+}
+
+img.lightboxed.initialized.active {
+    max-width: inherit;
+    max-height: inherit;
+}
+
+.pull-left {
+  float: left !important;
+}
+
+.pull-right {
+  float: right !important;
+}
+
+.facebook-share {
+    background-color: #FFF3E0;
+    padding: 5px 15px;
+    border-radius: 4px;
+	margin: 20px 0;
 }

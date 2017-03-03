@@ -66,7 +66,8 @@
 				
 				<div class="input-field col m4">
 					<i class="material-icons prefix">perm_phone_msg</i>
-					<form:input id="contactNo" path="user.contactNo" type="text" cssClass="validate" required="required" disabled="${disableEdit}" />
+					<form:input id="contactNo" path="user.contactNo" type="number"
+						cssClass="validate" required="required" disabled="${disableEdit}" />
 					<label for="contactNo">Contact No.</label>
 				</div>
 			</div>
@@ -90,6 +91,16 @@
 						<input id="passwordConfirmation" name="passwordConfirmation" type="password" class="validate" required="required">
 						<label for="passwordConfirmation">Re-Enter Password</label>
 					</div>
+				</div>
+				
+				<div class="row">
+					<p class="referralMessage">Since any friend of yours is a friend of ours, you can share this site on your friends and family.</p>
+					<div class="input-field col m4">
+						<i class="material-icons prefix">email</i>
+						<input id="referrals" name="referrals" type="text" >
+						<label for="referrals">Referred by (Email)</label>
+					</div>
+					
 				</div>
 	
 				<p class="eligibility-checkbox">

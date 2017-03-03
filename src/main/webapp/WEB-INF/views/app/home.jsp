@@ -5,9 +5,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Blood Donation Online System</title>
+	<title>Blood Donation Online System</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
+	<meta property="og:image" content="http://i.imgur.com/iCxl9rj.png" />
 
 	<link rel="stylesheet" href="<c:url value="/resources/css/devices.css" />" media="screen,projection" />
 	<link rel="stylesheet" href="<c:url value="/resources/css/main.css" />" media="screen,projection" />
@@ -93,17 +94,19 @@
 		<div class="container-sml footer-nav text-center">
 			<div class="col-12">
 				<div>
-					<span> 	&copy; 2017 Restie, Reynaldo, Francis & Bruce </span>
+					<span> 	&copy; 2017 Restie, Reynaldo, Francis &amp; Bruce </span>
 				</div>
 			</div>
 		</div>
 	</div>
-
+	
 	<!-- Scripts -->
 	<script src="<c:url value="/resources/js/jquery.min.js" />"></script>
+	<script src="<c:url value="/resources/js/jquery.tablesorter.min.js" />"></script>
+	<script src="<c:url value="/resources/js/fbsdk.js" />"></script>
 	<script src="<c:url value="/resources/js/materialize.js" />"></script>
 	<script src="<c:url value="/resources/js/app.js" />"></script>
-
+	
 	<script>
 		var message = "${infoMessage}" || "${errorMessage}";
 		if (message) {

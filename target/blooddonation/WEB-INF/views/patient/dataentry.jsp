@@ -66,7 +66,8 @@
 				
 				<div class="input-field col m4">
 					<i class="material-icons prefix">perm_phone_msg</i>
-					<form:input id="contactNo" path="user.contactNo" type="text" cssClass="validate" required="required" disabled="${disableEdit}" />
+					<form:input id="contactNo" path="user.contactNo" type="number"
+						cssClass="validate" required="required" disabled="${disableEdit}" />
 					<label for="contactNo">Contact No.</label>
 				</div>
 			</div>

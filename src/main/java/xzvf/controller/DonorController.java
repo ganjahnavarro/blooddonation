@@ -7,6 +7,7 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import org.apache.commons.validator.routines.EmailValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
@@ -83,6 +84,23 @@ public class DonorController {
 		
 		donorService.save(donor);
 		mailService.sendMail(donor.getUser().getEmail(), "Account activation", message);
+		
+
+		String referrals = request.getParameter("referrals");
+		if (referrals != null) {
+			for (String referral : referrals.split(",")) {
+				referral = referral.trim();
+				if (EmailValidator.getInstance().isValid(referral)) {
+					String body = "Hi, \n \n"
+							+ "Please visit: http://blooddonation-bloodspace.rhcloud.com \n \n"
+							+ "This is the place where good donors and real patients meet. "
+							+ "The blood you donate gives someone another chance at life. "
+							+ "One day that someone may be a close relative, a friend, a loved one - or even you. "
+							+ "Donate Blood to give back life.";
+					mailService.sendMail(referral, "Blood Donation Campaign", body);
+				}
+			}
+		}
 		
 		redirectAttributes.addFlashAttribute("infoMessage", "Registration successful. Please verify account to login");
 		String redirectPath = Utility.isLoggedIn() ? "/donor/list" : "/login";

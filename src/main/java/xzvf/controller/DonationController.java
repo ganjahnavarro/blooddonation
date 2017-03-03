@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
@@ -184,6 +185,15 @@ public class DonationController {
 			}
 		}
 		return assistedDonations;
+	}
+	
+	@RequestMapping(value = "/image", method = RequestMethod.GET)
+	public void showAttachment(@RequestParam("id") Integer id, HttpServletResponse response, HttpServletRequest request)
+			throws ServletException, IOException {
+		Donation donation = (Donation) donationService.findById(id);
+		response.setContentType("image/jpeg, image/jpg, image/png, image/gif");
+		response.getOutputStream().write(donation.getImage());
+		response.getOutputStream().close();
 	}
 	
 	@RequestMapping(value = "/attachment/{id}/download", method = RequestMethod.GET)

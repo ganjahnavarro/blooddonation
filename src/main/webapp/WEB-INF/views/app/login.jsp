@@ -5,9 +5,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<title>Blood Donation Online System</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
-	<title>Blood Donation Online System</title>
+	<meta property="og:image" content="http://i.imgur.com/iCxl9rj.png" />
 	
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	<link rel="stylesheet" href="<c:url value="/resources/css/materialize.css" />" media="screen,projection"/>
@@ -67,7 +68,8 @@
 
 	<!-- Scripts -->
 	<script src="<c:url value="/resources/js/jquery.min.js" />"></script>
-	<script src="<c:url value="/resources/js/jquery.tablesorter.js" />"></script>
+	<script src="<c:url value="/resources/js/jquery.tablesorter.min.js" />"></script>
+	<script src="<c:url value="/resources/js/fbsdk.js" />"></script>
 	<script src="<c:url value="/resources/js/materialize.js" />"></script>
 	<script src="<c:url value="/resources/js/app.js" />"></script>
 

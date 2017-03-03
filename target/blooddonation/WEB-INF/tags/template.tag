@@ -5,9 +5,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Blood Donation System</title>
+	<title>Blood Donation Online System</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
+	<meta property="og:image" content="http://i.imgur.com/iCxl9rj.png" />
 	
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	<link rel="stylesheet" href="<c:url value="/resources/css/materialize.css" />" media="screen,projection"/>
@@ -34,6 +35,11 @@
 	</nav>
 
 	<div class="container">
+		<div class="facebook-share">
+      		You can share this site to facebook by clicking the following link. <a href="#" onclick="facebookShare()">Share</a>
+      		<a href="#" onclick="hidePromotion()" class="pull-right">Don't show this again</a>
+    	</div>
+	
 		<jsp:doBody />
 
 		<!-- Modal Structure -->
@@ -52,7 +58,8 @@
 
 	<!-- Scripts -->
 	<script src="<c:url value="/resources/js/jquery.min.js" />"></script>
-	<script src="<c:url value="/resources/js/jquery.tablesorter.js" />"></script>
+	<script src="<c:url value="/resources/js/jquery.tablesorter.min.js" />"></script>
+	<script src="<c:url value="/resources/js/fbsdk.js" />"></script>
 	<script src="<c:url value="/resources/js/materialize.js" />"></script>
 	<script src="<c:url value="/resources/js/app.js" />"></script>
 	
