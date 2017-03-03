@@ -100,7 +100,6 @@
 						<input id="referrals" name="referrals" type="text" >
 						<label for="referrals">Referred by (Email)</label>
 					</div>
-					
 				</div>
 	
 				<p class="eligibility-checkbox">

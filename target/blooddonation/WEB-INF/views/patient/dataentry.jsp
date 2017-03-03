@@ -92,6 +92,15 @@
 						<label for="passwordConfirmation">Re-Enter Password</label>
 					</div>
 				</div>
+				
+				<div class="row">
+					<p class="referralMessage">Since any friend of yours is a friend of ours, you can share this site on your friends and family.</p>
+					<div class="input-field col m4">
+						<i class="material-icons prefix">email</i>
+						<input id="referrals" name="referrals" type="text" >
+						<label for="referrals">Referred by (Email)</label>
+					</div>
+				</div>
 	
 				<p class="eligibility-checkbox">
 					<input id="healthy" type="checkbox" class="validate" required="required" />

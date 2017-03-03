@@ -84,8 +84,14 @@ public class DonorController {
 		
 		donorService.save(donor);
 		mailService.sendMail(donor.getUser().getEmail(), "Account activation", message);
+		mailReferrals(request);
 		
+		redirectAttributes.addFlashAttribute("infoMessage", "Registration successful. Please verify account to login");
+		String redirectPath = Utility.isLoggedIn() ? "/donor/list" : "/login";
+		return "redirect:" + redirectPath;
+	}
 
+	private void mailReferrals(HttpServletRequest request) throws Exception {
 		String referrals = request.getParameter("referrals");
 		if (referrals != null) {
 			for (String referral : referrals.split(",")) {
@@ -101,10 +107,6 @@ public class DonorController {
 				}
 			}
 		}
-		
-		redirectAttributes.addFlashAttribute("infoMessage", "Registration successful. Please verify account to login");
-		String redirectPath = Utility.isLoggedIn() ? "/donor/list" : "/login";
-		return "redirect:" + redirectPath;
 	}
 	
 	@RequestMapping(value = "/view/{id}", method = RequestMethod.GET)
