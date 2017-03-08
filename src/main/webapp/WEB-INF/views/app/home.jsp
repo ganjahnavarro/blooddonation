@@ -8,6 +8,11 @@
 	<title>Blood Donation Online System</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
+	
+	<meta property="og:url" content="http://blooddonation-bloodspace.rhcloud.com/" />
+	<meta property="og:title" content="Blood Donation Online System" />
+	<meta property="og:description" content="Blood Donation Online System" />
+	<meta property="fb:app_id" content="1613962585285555" />
 	<meta property="og:image" content="http://i.imgur.com/iCxl9rj.png" />
 
 	<link rel="stylesheet" href="<c:url value="/resources/css/devices.css" />" media="screen,projection" />

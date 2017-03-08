@@ -35,6 +35,7 @@ public class DonorsReportBuilder extends AbstractReportView {
 		table.setWidthPercentage(100.0f);
 		table.setWidths(new float[] { 2.5f, 0.8f, 2.5f, 2.2f, 1.8f, 0.8f });
 		table.setSpacingBefore(20);
+		table.setSpacingAfter(20);
 
 		defaultCell = new PdfPCell();
 		defaultCell.setPadding(5);
@@ -56,6 +57,7 @@ public class DonorsReportBuilder extends AbstractReportView {
 			table = addCell(table, donor.getUser().getGender().getCode());
 		}
 		document.add(table);
+		document.add(new Paragraph("Total donor's count: " + donors.size(), courierFont));
 	}
 
 	private PdfPTable addCell(PdfPTable table, Object data) {

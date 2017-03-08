@@ -6,7 +6,25 @@
 		
 		$('select').material_select();
 		
-		$('.datepicker').pickadate();
+		$('.datepicker').pickadate({
+		    onSet: function( arg ){
+		        if ('select' in arg) { //prevent closing on selecting month/year
+		            this.close();
+		        }
+		    }
+		});
+		
+		$('li.tab').click
+		
+		$(document).on('click', 'li.tab', {}, function(e){
+			$('.datepicker').pickadate({
+			    onSet: function( arg ){
+			        if ('select' in arg) { //prevent closing on selecting month/year
+			            this.close();
+			        }
+			    }
+			});
+		});
 		
 		$("table").tablesorter();
 		

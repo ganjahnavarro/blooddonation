@@ -1,5 +1,6 @@
 package xzvf.controller;
 
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -17,6 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import xzvf.Utility;
+import xzvf.enums.BloodType;
+import xzvf.enums.Gender;
+import xzvf.enums.Status;
 import xzvf.model.Donor;
 import xzvf.model.Patient;
 import xzvf.model.User;
@@ -92,8 +96,31 @@ public class ApplicationController {
 	}
 	
 	@RequestMapping(value = "/reports", method = RequestMethod.GET)
-	public String reports() {
-		return "app/reports";
+	public String reports(ModelMap model) {
+		Map<String, String> usersOrderBy = new LinkedHashMap<>();
+		usersOrderBy.put("user.lastName", "Name");
+		usersOrderBy.put("bloodType", "Blood Type");
+		usersOrderBy.put("user.address", "Address");
+		usersOrderBy.put("user.email", "Email");
+		usersOrderBy.put("user.contactNo", "Contact No");
+		usersOrderBy.put("user.gender", "Gender");
+		
+		Map<String, String> donationsOrderBy = new LinkedHashMap<>();
+		donationsOrderBy.put("donorUser.lastName", "Donor");
+		donationsOrderBy.put("patientUser.lastName", "Patient");
+		donationsOrderBy.put("title", "Title");
+		donationsOrderBy.put("entryDate", "Entry Date");
+		donationsOrderBy.put("expiryDate", "Expiry Date");
+		donationsOrderBy.put("status", "Status");
+		
+		model.addAttribute("genders", Gender.values());
+    	model.addAttribute("bloodTypes", BloodType.values());
+    	model.addAttribute("statuses", Status.values());
+    	
+    	model.addAttribute("usersOrderBy", usersOrderBy);
+    	model.addAttribute("donationsOrderBy", donationsOrderBy);
+    	
+		return "reports/list";
 	}
 	
 }

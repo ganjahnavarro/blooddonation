@@ -1,5 +1,6 @@
 package xzvf.service;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -7,6 +8,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import xzvf.enums.BloodType;
 import xzvf.enums.Status;
 import xzvf.model.Donation;
 import xzvf.repository.AbstractRepository;
@@ -34,6 +36,10 @@ public class DonationService extends AbstractService {
 	
 	public List<Donation> findAssistableDonations(Boolean isPatient) {
 		return repository.findAssistableDonations(isPatient);
+	}
+	
+	public List<Donation> findDonations(Date startDate, Date endDate, BloodType bloodType, Status status, String orderBy) {
+		return repository.findDonations(startDate, endDate, bloodType, status, orderBy);
 	}
 	
 }

@@ -35,6 +35,7 @@ public class PatientsReportBuilder extends AbstractReportView {
 		table.setWidthPercentage(100.0f);
 		table.setWidths(new float[] { 2.5f, 0.8f, 2.5f, 2.2f, 1.8f, 0.8f });
 		table.setSpacingBefore(20);
+		table.setSpacingAfter(20);
 
 		defaultCell = new PdfPCell();
 		defaultCell.setPadding(5);
@@ -56,6 +57,7 @@ public class PatientsReportBuilder extends AbstractReportView {
 			table = addCell(table, patient.getUser().getGender().getCode());
 		}
 		document.add(table);
+		document.add(new Paragraph("Total patient's count: " + patients.size(), courierFont));
 	}
 
 	private PdfPTable addCell(PdfPTable table, Object data) {
